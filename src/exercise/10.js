@@ -10,7 +10,11 @@ function Counter() {
   //    React.useState to increment the count
   // 🐨 render the count you get from React.useState inside the button and use
   //    your increment function as the onClick handler.
-  return <button />
+  const [count, setCount] = React.useState(0)
+
+  const increment = () => setCount(count+1)
+
+  return <button onClick={increment}>{count}</button>
 }
 
 function Usage() {
