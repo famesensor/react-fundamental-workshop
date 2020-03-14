@@ -8,10 +8,8 @@
 <body>
   <div id="root"></div>
 
-  <!-- 💣 remove this line
   <script src="https://unpkg.com/react@16.12.0/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
-  💣 remove this line -->
 
   <script type="module">
     const rootElement = document.getElementById('root')
@@ -19,11 +17,25 @@
     // You're going to re-implement this code using React!
     // 💣 So go ahead and delete this implementation (or comment it out for now)
     // These three lines are similar to React.createElement
-    const element = document.createElement('div')
-    element.textContent = 'Hello World'
-    element.className = 'container'
+    // const element = document.createElement('div')
+    // element.textContent = 'Hello World'
+    // element.className = 'container'
     // This is similar to ReactDOM.render
-    rootElement.appendChild(element);
+    // rootElement.appendChild(element);
+
+    // const elementProps = {id: 'root', children: 'Hello world'}
+    // const elementType = 'div'
+    const reactElement = React.createElement('div', {
+      className: 'container',
+      children: [
+        React.createElement('span', null, 'Hello world'),
+        ' ',
+        React.createElement('span', null, 'Hi')
+      ]      
+    })
+    // const reactElement = React.createElement(elementType, elementProps)
+    // rootElement.appendChild(reactElement);
+    ReactDOM.render(reactElement, rootElement)
 
     // 🐨 Please re-implement the regular document.createElement code above
     // with these React API calls

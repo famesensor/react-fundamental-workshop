@@ -16,3 +16,16 @@
 <!-- 🐨 Create a div (💰 document.createElement('div')) -->
 <!-- 🐨 Set the div's textContent to 'Hello World' and className to 'container' -->
 <!-- 🐨 Append the div to the root div using `appendChild` -->
+<html>
+  <body>
+    <div>Hello World</div>
+  </body>
+  <script type="module">
+    const root = document.createElement('div')
+    document.body.appendChild(root)
+    const element = document.createElement('div')
+    element.textContent = 'Hey kid!!'
+    element.className = 'container'
+    root.appendChild(element)
+  </script>
+</html>
