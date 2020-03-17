@@ -8,9 +8,28 @@ import fetchPokemon from '../fetch-pokemon'
 function PokemonInfo({pokemonName}) {
   // 🐨 Have state for the pokemon (null), the error state (null), and the
   // loading state (false).
-
+  const [pokemon, setPokemon] = React.useState(null)
+  const [loading, setLoading] = React.useState(false)
+  const [error, setError] = React.useState(null)
   // 🐨 use React.useEffect where the callback should be called whenever the
   // pokemon name changes.
+  React.useEffect(() => {
+    if (!pokemonName) return
+    setLoading(true)
+    setError(null)
+    setPokemon(null)
+    fetchPokemon(pokemonName)
+      .then((pokemon) => {
+        setLoading(false)
+        setError(null)
+        setPokemon(pokemon)
+      },
+      error => {
+        setLoading(false)
+        setError(error)
+        setPokemon(null)
+      })
+  }, [pokemonName])
   // 💰 DON'T FORGET THE DEPENDENCIES ARRAY!
   // 💰 if the pokemonName is falsy (an empty string) then don't bother making the request (exit early).
   // 🐨 before calling `fetchPokemon`, make sure to update the loading state
@@ -36,8 +55,12 @@ function PokemonInfo({pokemonName}) {
             1. loading: '...'
             2. error: 'ERROR!'
             3. pokemon: the JSON.stringified pokemon in a <pre></pre>
-      */}
-      TODO
+      */
+        loading ? ('...') : 
+        error ? ('ERROR (check your developer tools network tab') : 
+        pokemonName ? (<pre>{JSON.stringify(pokemon || 'Unknown', null, 2)}</pre>) :
+        ('Submit a pokemon')
+      }
     </div>
   )
 }
